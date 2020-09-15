@@ -146,6 +146,8 @@ func permute(_ nums: [Int]) -> [[Int]] {
 
 > 给定一个可包含重复数字的序列，返回所有不重复的全排列。
 
+![backtrack_permutations_ii](../images/backtrack_permutations_ii.png)
+
 ```swift
 //https://leetcode-cn.com/problems/permutations-ii/solution/swift-47-quan-pai-lie-iipai-xu-hou-hui-su-you-hua-/
 //执行用时：64 ms, 在所有 Swift 提交中击败了43.59%的用户
