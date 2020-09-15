@@ -11,8 +11,9 @@
 > 这个模板主要是介绍了一些通用的刷题模板，以及一些常见问题，如到底要刷多少题，按什么顺序来刷题，如何提高刷题效率等。
 
 ## 在线文档
+Github: [https://github.com/easyui/algorithm-pattern-swift](https://github.com/easyui/algorithm-pattern-swift) ⭐️
 
-在线文档 Gitbook：[算法模板 🔥](https://greyireland.gitbook.io/algorithm-pattern/)
+在线文档 Gitbook：[算法模板 🔥](https://zyj.gitbook.io/algorithm-pattern-swift/)
 
 ## 核心内容
 
@@ -63,7 +64,7 @@
 
 为什么这么要这么刷，因为 repo 里面的题目是按类型归类，都是一些常见的高频题，很有代表性，大部分都是可以用模板加一点变形做出来，刷完后对大部分题目有基本的认识。然后刷一遍探索卡片，巩固一下一些基础知识点，总结这些知识点。最后剑指 offer 是大部分公司的出题源头，刷完面试中基本会遇到现题或者变形题，基本刷完这三部分，大部分国内公司的面试题应该就没什么问题了~
 
-1、 [algorithm-pattern 练习题](https://greyireland.gitbook.io/algorithm-pattern/)
+1、 [algorithm-pattern 练习题](https://zyj.gitbook.io/algorithm-pattern-swift/)
 
 ![练习题](https://img.fuiboom.com/img/repo_practice.png)
 
@@ -89,7 +90,7 @@
 
 持续更新中，觉得还可以的话点个 **star** 收藏呀 ⭐️~
 
-【 Github 】[https://github.com/greyireland/algorithm-pattern](https://github.com/greyireland/algorithm-pattern) ⭐️
+【 Github 】[https://github.com/easyui/algorithm-pattern-swift](https://github.com/easyui/algorithm-pattern-swift) ⭐️
 
 ## 完成打卡
 
@@ -97,5 +98,8 @@
 
 | 完成 | 用户                                              | 项目地址                                                            |
 | ---- | ------------------------------------------------- | ------------------------------------------------------------------- |
+| ✅   | [easyui](https://github.com/easyui/) | [algorithm-pattern-swift(Swift 实现)](https://github.com/easyui/algorithm-pattern-swift)          |
+
 | ✅   | [wardseptember](https://github.com/wardseptember) | [notes(Java 实现)](https://github.com/wardseptember/notes)          |
 | ✅   | [dashidhy](https://github.com/dashidhy) | [algorithm-pattern-python(Python 实现)](https://github.com/dashidhy/algorithm-pattern-python) |
+| ✅   | [binzi56](https://github.com/binzi56) | [algorithm-pattern-c(c++ 实现)](https://github.com/binzi56/algorithm-pattern-c) |
