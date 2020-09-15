@@ -99,7 +99,6 @@ Github: [https://github.com/easyui/algorithm-pattern-swift](https://github.com/e
 | 完成 | 用户                                              | 项目地址                                                            |
 | ---- | ------------------------------------------------- | ------------------------------------------------------------------- |
 | ✅   | [easyui](https://github.com/easyui/) | [algorithm-pattern-swift(Swift 实现)](https://github.com/easyui/algorithm-pattern-swift)          |
-
 | ✅   | [wardseptember](https://github.com/wardseptember) | [notes(Java 实现)](https://github.com/wardseptember/notes)          |
 | ✅   | [dashidhy](https://github.com/dashidhy) | [algorithm-pattern-python(Python 实现)](https://github.com/dashidhy/algorithm-pattern-python) |
 | ✅   | [binzi56](https://github.com/binzi56) | [algorithm-pattern-c(c++ 实现)](https://github.com/binzi56/algorithm-pattern-c) |
