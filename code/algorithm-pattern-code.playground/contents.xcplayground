@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='introduction-swift'/>
+        <page name='data_structure-stack_queue'/>
+        <page name='data_structure-linked_list'/>
+        <page name='data_structure-binary_op'/>
+        <page name='data_structure-binary_tree'/>
+        <page name='basic_algorithm-sort'/>
+        <page name='basic_algorithm-binary_search'/>
+        <page name='basic_algorithm-dp'/>
+        <page name='advanced_algorithm-recursion'/>
+        <page name='advanced_algorithm-slide_window'/>
+        <page name='advanced_algorithm-binary_search_tree'/>
+        <page name='advanced_algorithm-backtrack'/>
+    </pages>
+</playground>
