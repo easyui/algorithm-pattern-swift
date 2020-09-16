@@ -4,14 +4,12 @@
 
 ### 二叉树遍历
 
-**前序遍历**：**先访问根节点**，再前序遍历左子树，再前序遍历右子树
-**中序遍历**：先中序遍历左子树，**再访问根节点**，再中序遍历右子树
-**后序遍历**：先后序遍历左子树，再后序遍历右子树，**再访问根节点**
+**前序遍历**：**先访问根节点**，再前序遍历左子树，再前序遍历右子树 **中序遍历**：先中序遍历左子树，**再访问根节点**，再中序遍历右子树 **后序遍历**：先后序遍历左子树，再后序遍历右子树，**再访问根节点**
 
 注意点
 
-- 以根访问顺序决定是什么遍历
-- 左子树都是优先右子树
+* 以根访问顺序决定是什么遍历
+* 左子树都是优先右子树
 
 ```swift
 public class TreeNode {
@@ -25,6 +23,7 @@ public class TreeNode {
     }
 }
 ```
+
 #### 前序递归
 
 ```swift
@@ -44,11 +43,11 @@ func preorderTraversal(_ root: TreeNode?)  {
 //前序非递归a
 func preorderTraversal_a(_ root: TreeNode?) ->[Int] {
     guard  root != nil  else { return []  }
-    
+
     var result = [Int]()
     var stack = [TreeNode]()
-    
-    
+
+
     var cur = root
     while cur != nil || stack.count != 0 {
         while cur != nil {
@@ -67,10 +66,10 @@ func preorderTraversal_a(_ root: TreeNode?) ->[Int] {
 //前序非递归b
 func preorderTraversal_b(_ root: TreeNode?) ->[Int] {
     guard let element = root  else { return []  }
-    
+
     var result = [Int]()
     var stack = [element]
-    
+
     while !stack.isEmpty {
         let node = stack.removeLast()
         result.append(node.val)
@@ -81,7 +80,7 @@ func preorderTraversal_b(_ root: TreeNode?) ->[Int] {
             stack.append(left)
         }
     }
-    
+
     return result
 }
 ```
@@ -93,24 +92,24 @@ func preorderTraversal_b(_ root: TreeNode?) ->[Int] {
 //思路：通过stack 保存已经访问的元素，用于原路返回
 func inorderTraversal(_ root: TreeNode?) ->[Int] {
     guard root != nil  else { return []  }
-    
+
     var result = [Int]()
     var stack = [TreeNode]()
-    
+
     var cur = root
     while cur != nil || stack.count != 0 {
         while cur != nil {
             stack.append(cur!)
             cur = cur!.left
         }
-        
+
         //        if let node = stack.popLast() {
         let node = stack.removeLast()
         result.append(node.val)
         cur = node.right
         //        }
     }
-    
+
     return result
 }
 ```
@@ -121,18 +120,18 @@ func inorderTraversal(_ root: TreeNode?) ->[Int] {
 //后序非递归a
 func postorderTraversal_a(_ root: TreeNode?) ->[Int] {
     guard  root != nil  else { return []  }
-    
+
     var result = [Int]()
     var stack = [TreeNode]()
     var lastVisit : TreeNode?    // 通过lastVisit标识右子节点是否已经弹出
-    
+
     var cur = root
     while cur != nil || stack.count != 0 {
         while cur != nil {
             stack.append(cur!)
             cur = cur!.left
         }
-        
+
         let top = stack.last!//这里先看看，先不弹出
         if top.right == nil || top.right === lastVisit {//根节点必须在右节点弹出之后，再弹出
             let node = stack.removeLast()
@@ -148,12 +147,12 @@ func postorderTraversal_a(_ root: TreeNode?) ->[Int] {
 //后序非递归b
 func postorderTraversal_b(_ root: TreeNode?) ->[Int] {
     guard let element = root  else { return []  }
-    
+
     var result = [Int]()
     var stack = [element]
     var resultStack = [TreeNode]()
-    
-    
+
+
     while !stack.isEmpty {
         let node = stack.removeLast()
         resultStack.append(node)
@@ -164,18 +163,18 @@ func postorderTraversal_b(_ root: TreeNode?) ->[Int] {
             stack.append(right)
         }
     }
-    
+
     while !resultStack.isEmpty {
         result.append(resultStack.removeLast().val)
     }
-    
+
     return result
 }
 ```
 
 注意点
 
-- 核心就是：根节点必须在右节点弹出之后，再弹出
+* 核心就是：根节点必须在右节点弹出之后，再弹出
 
 #### DFS 深度搜索-从上到下
 
@@ -206,7 +205,7 @@ func preorderTraversal_dfs_a(root: TreeNode?) -> [Int] {
 func divideAndConquer(_ root: TreeNode?) -> [Int] {
     guard let node = root else { return [] }
     var result = [Int]()
-    
+
     // 分治(Divide)
     let left = divideAndConquer(node.left)
     let right = divideAndConquer(node.right)
@@ -229,7 +228,7 @@ func levelOrder(_ root: TreeNode?) -> [[Int]] {
     guard root != nil else { return [] }
     var queue = [root!]
     var res = [[Int]]()
-    
+
     while !queue.isEmpty {
         let count = queue.count // 记录当前层有多少元素（遍历当前层，再添加下一层）
         var level = [Int]() //存放该层所有数值
@@ -255,15 +254,15 @@ func levelOrder(_ root: TreeNode?) -> [[Int]] {
 
 适用场景
 
-- 快速排序
-- 归并排序
-- 二叉树相关问题
+* 快速排序
+* 归并排序
+* 二叉树相关问题
 
 分治法模板
 
-- 递归返回条件
-- 分段处理
-- 合并结果
+* 递归返回条件
+* 分段处理
+* 合并结果
 
 ```swift
 func traversal(_ root: TreeNode?) -> ResultType  {
@@ -294,7 +293,7 @@ func preorderTraversal_dfs_a(root: TreeNode?) -> [Int] {
 func divideAndConquer(_ root: TreeNode?) -> [Int] {
     guard let node = root else { return [] }
     var result = [Int]()
-    
+
     // 分治(Divide)
     let left = divideAndConquer(node.left)
     let right = divideAndConquer(node.right)
@@ -306,7 +305,7 @@ func divideAndConquer(_ root: TreeNode?) -> [Int] {
 }
 ```
 
-#### 归并排序  
+#### 归并排序
 
 ```swift
 func MergeSort(_ nums: [Int]) -> [Int] {
@@ -354,7 +353,7 @@ func merge(_ left: [Int],_ right: [Int]) -> [Int] {
 
 > 递归需要返回结果用于合并
 
-#### 快速排序  
+#### 快速排序
 
 ```swift
 //方法一
@@ -362,7 +361,7 @@ func QuickSort(_ nums:inout [Int]) -> [Int] {
     // 思路：把一个数组分为左右两段，左段小于右段，类似分治法没有合并过程
     quickSort(&nums, 0, nums.count - 1)
     return nums
-    
+
 }
 // 原地交换，所以传入交换索引
 func quickSort(_ nums:inout [Int],_ start: Int,_ end: Int) {
@@ -377,14 +376,14 @@ func quickSort(_ nums:inout [Int],_ start: Int,_ end: Int) {
 func partition(_ nums:inout [Int],_ start: Int,_ end: Int) -> Int {
     let p = nums[end]//参考点。排序：比p小的在左边，比p大的在右边
     var i = start
-    
+
     for j in start..<end {
         if nums[j] < p {
             swap(&nums, i, j)
             i += 1
         }
     }
-    
+
     // 把中间的值换为用于比较的基准值
     swap(&nums, i, end)
     return i
@@ -400,7 +399,7 @@ func quickSort_a(data:[Int])->[Int]{
      if data.count<=1 {
          return data
      }
-     
+
      var left:[Int] = []
      var right:[Int] = []
      let pivot:Int = data[data.count-1]
@@ -411,7 +410,7 @@ func quickSort_a(data:[Int])->[Int]{
              right.append(data[index])
          }
      }
-     
+
      var result = quickSort_a(data: left)
      result.append(pivot)
      let rightResult = quickSort_a(data: right)
@@ -422,8 +421,7 @@ func quickSort_a(data:[Int])->[Int]{
 
 注意点：
 
-> 快排方法一由于是原地交换所以没有合并过程
-> 传入的索引是存在的索引（如：0、count-1 等），越界可能导致崩溃
+> 快排方法一由于是原地交换所以没有合并过程 传入的索引是存在的索引（如：0、count-1 等），越界可能导致崩溃
 
 常见题目示例
 
@@ -443,11 +441,11 @@ func quickSort_a(data:[Int])->[Int]{
 func maxDepth(_ root: TreeNode?) -> Int {
     // 返回条件处理
     guard let node = root else { return 0 }
-    
+
     // divide：分左右子树分别计算
     let leftNum = maxDepth(node.left)
     let rightNum = maxDepth(node.right)
-    
+
     // conquer：合并左右子树结果
     if leftNum > rightNum{
         return leftNum + 1
@@ -463,7 +461,7 @@ func maxDepth(_ root: TreeNode?) -> Int {
 
 > 给定一个二叉树，判断它是否是高度平衡的二叉树。
 
-思路：分治法，左边平衡 && 右边平衡 && 左右两边高度 <= 1，
+思路：分治法，左边平衡 && 右边平衡 && 左右两边高度 &lt;= 1，
 
 ```swift
 //https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/swift-fen-zhi-fa-by-hu-cheng-he-da-bai-sha/
@@ -472,10 +470,10 @@ func maxDepth(_ root: TreeNode?) -> Int {
 //内存消耗：21.5 MB, 在所有 Swift 提交中击败了100.00%的用户
 func maxDepth(_ root: TreeNode?) -> Int {
     guard let node = root else { return 0 }
-    
+
     let leftNum = maxDepth(node.left)
     let rightNum = maxDepth(node.right)
-    
+
     if leftNum > rightNum{
         return leftNum + 1
     }else{
@@ -489,17 +487,17 @@ func maxDepth(_ root: TreeNode?) -> Int {
 //内存消耗：22.3 MB, 在所有 Swift 提交中击败了100.00%的用户
 func isBalanced(_ root: TreeNode?) -> Bool {
     guard let node = root else { return true }
-    
+
     if !isBalanced(node.left){
         return false
     }
     if !isBalanced(node.right){
         return false
     }
-    
+
     let leftNum = maxDepth(node.left)
     let rightNum  = maxDepth(node.right)
-    
+
     return (abs(leftNum - rightNum) <= 1)
 }
 ```
@@ -518,24 +516,24 @@ func isBalanced(_ root: TreeNode?) -> Bool {
 //内存消耗：23.1 MB, 在所有 Swift 提交中击败了100.00%的用户
 func maxPathSum(_ root: TreeNode?) -> Int {
     var pathMax = Int.min
-    
+
     // 递归计算左右子节点的最大贡献值
     func dfs(_ root: TreeNode?) -> Int{
         // check
         guard let element = root else { return 0 }
-        
+
         // Divide
         let leftMax = dfs(element.left)
         let rightMax =  dfs(element.right)
-        
+
         // Conquer
         // 节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值
         pathMax = max(pathMax,leftMax + rightMax + element.val)
-        
+
         //只有在最大贡献值大于 0 时，才会选取对应子节点
         return max(max(leftMax , rightMax) + element.val,0)
     }
-    
+
     dfs(root)
     return pathMax
 }
@@ -570,15 +568,15 @@ func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> 
     if left != nil && right != nil{
         return root
     }
-    
+
     if left != nil {
         return left
     }
-    
+
     if right != nil {
         return right
     }
-    
+
     return nil
 }
 ```
@@ -589,9 +587,9 @@ func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> 
 
 [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 
-> 给你一个二叉树，请你返回其按  **层序遍历**  得到的节点值。 （即逐层地，从左到右访问所有节点）
+> 给你一个二叉树，请你返回其按 **层序遍历** 得到的节点值。 （即逐层地，从左到右访问所有节点）
 
-思路：用一个队列记录一层的元素，然后扫描这一层元素添加下一层元素到队列（一个数进去出来一次，所以复杂度 O(logN)）
+思路：用一个队列记录一层的元素，然后扫描这一层元素添加下一层元素到队列（一个数进去出来一次，所以复杂度 O\(logN\)）
 
 ```swift
 //https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/swift-bfs-by-hu-cheng-he-da-bai-sha/
@@ -602,7 +600,7 @@ func levelOrder(_ root: TreeNode?) -> [[Int]] {
     guard root != nil else { return [] }
     var queue = [root!]
     var res = [[Int]]()
-    
+
     while !queue.isEmpty {
         let count = queue.count // 记录当前层有多少元素（遍历当前层，再添加下一层）
         var level = [Int]() //存放该层所有数值
@@ -620,7 +618,6 @@ func levelOrder(_ root: TreeNode?) -> [[Int]] {
     }
     return res
 }
-
 ```
 
 #### binary-tree-level-order-traversal-ii
@@ -641,7 +638,7 @@ func levelOrderBottom(_ root: TreeNode?) -> [[Int]] {
         guard root != nil else { return [] }
         var queue = [root!]
         var res = [[Int]]()
-        
+
         while !queue.isEmpty {
             let count = queue.count // 记录当前层有多少元素（遍历当前层，再添加下一层）
             var level = [Int]() //存放该层所有数值
@@ -681,7 +678,7 @@ func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
       var queue = [root!]
       var levelIndex = 0
       var res = [[Int]]()
-      
+
       while !queue.isEmpty {
           let count = queue.count // 记录当前层有多少元素（遍历当前层，再添加下一层）
           var level = [Int]() //存放该层所有数值
@@ -700,7 +697,6 @@ func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
       }
       return res
 }
-
 ```
 
 ### 二叉搜索树应用
@@ -713,7 +709,7 @@ func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
 
 思路 1：中序遍历，检查结果列表是否已经有序
 
-思路 2：分治法，判断左 MAX < 根 < 右 MIN
+思路 2：分治法，判断左 MAX &lt; 根 &lt; 右 MIN
 
 ```swift
 // v1
@@ -723,17 +719,17 @@ func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
 //内存消耗：21.5 MB, 在所有 Swift 提交中击败了90.00%的用户
 func isValidBST(_ root: TreeNode?) -> Bool {
     guard root != nil  else { return true  }
-    
+
     var lastVisited : Int?
     var stack = [TreeNode]()
-    
+
     var cur = root
     while cur != nil || stack.count != 0 {
         while cur != nil {
             stack.append(cur!)
             cur = cur!.left
         }
-        
+
         let node = stack.removeLast()
         if let last = lastVisited, node.val <= last {
             return false
@@ -742,7 +738,7 @@ func isValidBST(_ root: TreeNode?) -> Bool {
         }
         cur = node.right
     }
-    
+
     return true
 }
 
@@ -755,20 +751,20 @@ func isValidBST_a(_ root: TreeNode?) -> Bool {
 
     func helper(_ root: TreeNode?)-> Bool{
         guard let element = root else { return true }
-        
+
         if !helper(element.left) {
             return false
         }
-        
+
         if element.val <= lastVisited {
             return false
         }
-        
+
         lastVisited = element.val
-        
+
         return helper(element.right)
     }
-    
+
     return helper(root)
 }
 ```
@@ -782,20 +778,19 @@ func isValidBST_a(_ root: TreeNode?) -> Bool {
 func isValidBST_b(_ root: TreeNode?) -> Bool {
     func helper(_ root: TreeNode?, _ min: Int? , _ max: Int?)-> Bool{
         guard let element = root else { return true }
-        
+
         if let val = min , element.val <= val{
             return false
         }
-        
+
         if let val = max , element.val >= val{
             return false
         }
         return helper(element.left,min,element.val) && helper(element.right,element.val,max)
     }
-    
+
     return helper(root,nil,nil)
 }
-
 ```
 
 #### insert-into-a-binary-search-tree
@@ -816,31 +811,32 @@ func insertIntoBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
         let node = TreeNode(val)
         return  node
     }
-    
+
     if val > element.val {
         element.right = insertIntoBST(element.right,val)
     }else{
         element.left = insertIntoBST(element.left,val)
     }
-    
+
     return element
 }
 ```
 
 ## 总结
 
-- 掌握二叉树递归与非递归遍历
-- 理解 DFS 前序遍历与分治法
-- 理解 BFS 层次遍历
+* 掌握二叉树递归与非递归遍历
+* 理解 DFS 前序遍历与分治法
+* 理解 BFS 层次遍历
 
 ## 练习
 
-- [ ] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
-- [ ] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
-- [ ] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
-- [ ] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
-- [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
-- [ ] [binary-tree-level-order-traversal-ii](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
-- [ ] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
-- [ ] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
-- [ ] [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+* [ ] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+* [ ] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
+* [ ] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
+* [ ] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+* [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+* [ ] [binary-tree-level-order-traversal-ii](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
+* [ ] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
+* [ ] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+* [ ] [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+

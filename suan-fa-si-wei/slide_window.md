@@ -1,4 +1,4 @@
-# 滑动窗口
+# 滑动窗口思想
 
 ## 模板
 
@@ -6,21 +6,21 @@
 /* 滑动窗口算法框架 */
 func slidingWindow(_ s: String, _ t: String) {
     let sArray = [Character](s)
-    
+
     var win =  Dictionary<Character, Int>()    // 保存滑动窗口字符集
     var need = Dictionary<Character, Int>()    // 保存需要的字符集
-    
+
     for c in t {
         need[c, default: 0] += 1
     }
-    
+
     var left = 0 ,right = 0    // 窗口
     var valid = 0    // 匹配次数
-    
+
     while right < sArray.count {
-		// rightItem 是将移入窗口的字符
+        // rightItem 是将移入窗口的字符
         let rightItem = sArray[right]
-		// 右移窗口
+        // 右移窗口
         right += 1
         // 进行窗口内数据的一系列更新
         ...
@@ -28,9 +28,9 @@ func slidingWindow(_ s: String, _ t: String) {
         /*** debug 输出的位置 ***/
         print("window: [\(left), \(right))\n", left, right);
         /********************/
-        
 
-		// 判断左侧窗口是否要收缩
+
+        // 判断左侧窗口是否要收缩
         while (window needs shrink) {
             // d 是将移出窗口的字符
             let leftItem = sArray[left]
@@ -75,10 +75,10 @@ void slidingWindow(string s, string t) {
 
 需要变化的地方
 
-- 1、右指针右移之后窗口数据更新
-- 2、判断窗口是否要收缩
-- 3、左指针右移之后窗口数据更新
-- 4、根据题意计算结果
+* 1、右指针右移之后窗口数据更新
+* 2、判断窗口是否要收缩
+* 3、左指针右移之后窗口数据更新
+* 4、根据题意计算结果
 
 ## 示例
 
@@ -92,19 +92,19 @@ void slidingWindow(string s, string t) {
 //内存消耗：15.5 MB, 在所有 Swift 提交中击败了96.67%的用户
 func minWindow(_ s: String, _ t: String) -> String {
     let sArray = [Character](s)
-    
+
     var win =  Dictionary<Character, Int>()    // 保存滑动窗口字符集
     var need = Dictionary<Character, Int>()    // 保存需要的字符集
-    
+
     for c in t {
         need[c, default: 0] += 1
     }
-    
+
     var left = 0 ,right = 0    // 窗口
     var match = 0    // match匹配次数
     var start = 0 , end = 0
     var minLength = Int.max
-    
+
     while right < sArray.count {
         let rightItem = sArray[right]
         right += 1
@@ -118,7 +118,7 @@ func minWindow(_ s: String, _ t: String) -> String {
         }else{
             continue
         }
-        
+
         // 当所有字符数量都匹配之后，开始缩紧窗口
         while match == need.count {
             if right - left < minLength {
@@ -126,7 +126,7 @@ func minWindow(_ s: String, _ t: String) -> String {
                 end = right
                 minLength = end - start
             }
-            
+
             let leftItem = sArray[left]
             left += 1
             // 左指针指向不在需要字符集则直接跳过
@@ -141,7 +141,7 @@ func minWindow(_ s: String, _ t: String) -> String {
             }
         }
     }
-    
+
     return minLength == Int.max ? "" : String(sArray[start..<end])
 }
 //print(minWindow("ADOBECODEBANC","ABC"))
@@ -149,7 +149,7 @@ func minWindow(_ s: String, _ t: String) -> String {
 
 [permutation-in-string](https://leetcode-cn.com/problems/permutation-in-string/)
 
-> 给定两个字符串  **s1**  和  **s2**，写一个函数来判断  **s2**  是否包含  **s1** 的排列。
+> 给定两个字符串 **s1** 和 **s2**，写一个函数来判断 **s2** 是否包含 **s1** 的排列。
 
 ```swift
 //https://leetcode-cn.com/problems/permutation-in-string/solution/swift-hua-dong-chuang-kou-by-hu-cheng-he-da-bai-sh/
@@ -157,17 +157,17 @@ func minWindow(_ s: String, _ t: String) -> String {
 //内存消耗：13.9 MB, 在所有 Swift 提交中击败了100.00%的用户
 func checkInclusion(_ s1: String, _ s2: String) -> Bool {
     let s2Array = [Character](s2)
-    
+
     var win =  Dictionary<Character, Int>()    // 保存滑动窗口字符集
     var need = Dictionary<Character, Int>()    // 保存需要的字符集
-    
+
     for c in s1 {
         need[c, default: 0] += 1
     }
-    
+
     var left = 0 ,right = 0    // 窗口
     var match = 0    // match匹配次数
-    
+
     while right < s2Array.count {
         let rightItem = s2Array[right]
         right += 1
@@ -181,13 +181,13 @@ func checkInclusion(_ s1: String, _ s2: String) -> Bool {
         }else{
             continue
         }
-        
+
         // 当所有字符数量都匹配之后，开始缩紧窗口
         while match == need.count {
             if right - left == s1.count {
                 return true
             }
-            
+
             let leftItem = s2Array[left]
             left += 1
             // 左指针指向不在需要字符集则直接跳过
@@ -208,7 +208,7 @@ func checkInclusion(_ s1: String, _ s2: String) -> Bool {
 
 [find-all-anagrams-in-a-string](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
 
-> 给定一个字符串  **s** 和一个非空字符串  **p**，找到  **s** 中所有是  **p** 的字母异位词的子串，返回这些子串的起始索引。
+> 给定一个字符串 **s** 和一个非空字符串 **p**，找到 **s** 中所有是 **p** 的字母异位词的子串，返回这些子串的起始索引。
 
 ```swift
 //https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/solution/swift-hua-dong-chuang-kou-by-hu-cheng-he-da-bai--2/
@@ -216,18 +216,18 @@ func checkInclusion(_ s1: String, _ s2: String) -> Bool {
 //内存消耗：14.7 MB, 在所有 Swift 提交中击败了100.00%的用户
 func findAnagrams(_ s: String, _ p: String) -> [Int] {
     let sArray = [Character](s)
-    
+
     var win =  [Character: Int]()    // 保存滑动窗口字符集
     var need = [Character: Int]()    // 保存需要的字符集
-    
+
     for c in p {
         need[c, default: 0] += 1
     }
-    
+
     var left = 0 ,right = 0    // 窗口
     var match = 0    // match匹配次数
     var startIndexs = [Int]()
-    
+
     while right < sArray.count {
         let rightItem = sArray[right]
         right += 1
@@ -241,12 +241,12 @@ func findAnagrams(_ s: String, _ p: String) -> [Int] {
         }else{
             continue
         }
-        
+
         while match == need.count {
             if right - left == p.count {
                 startIndexs.append(left)
             }
-            
+
             let leftItem = sArray[left]
             left += 1
             if let needItem = need[leftItem] {
@@ -257,19 +257,16 @@ func findAnagrams(_ s: String, _ p: String) -> [Int] {
             }
         }
     }
-    
+
     return startIndexs
 }
 ```
 
 [longest-substring-without-repeating-characters](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 
-> 给定一个字符串，请你找出其中不含有重复字符的   最长子串   的长度。
-> 示例  1:
+> 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。 示例 1:
 >
-> 输入: "abcabcbb"
-> 输出: 3
-> 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+> 输入: "abcabcbb" 输出: 3 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
 ```swift
 //https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/swift-hua-dong-chuang-kou-by-hu-cheng-he-da-bai--2/
@@ -277,12 +274,12 @@ func findAnagrams(_ s: String, _ p: String) -> [Int] {
 //内存消耗：14.4 MB, 在所有 Swift 提交中击败了89.78%的用户
 func lengthOfLongestSubstring(_ s: String) -> Int {
     let sArray = [Character](s)
-    
+
     var win =  Dictionary<Character, Int>()
-    
+
     var left = 0 ,right = 0    // 窗口
     var maxLength = 0
-    
+
     while right < sArray.count {
         let rightItem = sArray[right]
         right += 1
@@ -294,23 +291,24 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
         }
         maxLength = max(maxLength,right - left)
     }
-    
+
     return maxLength
 }
 ```
 
 ## 总结
 
-- 和双指针题目类似，更像双指针的升级版，滑动窗口核心点是维护一个窗口集，根据窗口集来进行处理
-- 核心步骤
-  - right 右移
-  - 收缩
-  - left 右移
-  - 求结果
+* 和双指针题目类似，更像双指针的升级版，滑动窗口核心点是维护一个窗口集，根据窗口集来进行处理
+* 核心步骤
+  * right 右移
+  * 收缩
+  * left 右移
+  * 求结果
 
 ## 练习
 
-- [ ] [minimum-window-substring](https://leetcode-cn.com/problems/minimum-window-substring/)
-- [ ] [permutation-in-string](https://leetcode-cn.com/problems/permutation-in-string/)
-- [ ] [find-all-anagrams-in-a-string](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
-- [ ] [longest-substring-without-repeating-characters](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+* [ ] [minimum-window-substring](https://leetcode-cn.com/problems/minimum-window-substring/)
+* [ ] [permutation-in-string](https://leetcode-cn.com/problems/permutation-in-string/)
+* [ ] [find-all-anagrams-in-a-string](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
+* [ ] [longest-substring-without-repeating-characters](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+

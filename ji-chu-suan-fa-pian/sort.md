@@ -1,4 +1,4 @@
-# 排序
+# 排序算法
 
 ## 常考排序
 
@@ -10,7 +10,7 @@ func QuickSort(_ nums:inout [Int]) -> [Int] {
     // 思路：把一个数组分为左右两段，左段小于右段，类似分治法没有合并过程
     quickSort(&nums, 0, nums.count - 1)
     return nums
-    
+
 }
 // 原地交换，所以传入交换索引
 func quickSort(_ nums:inout [Int],_ start: Int,_ end: Int) {
@@ -25,14 +25,14 @@ func quickSort(_ nums:inout [Int],_ start: Int,_ end: Int) {
 func partition(_ nums:inout [Int],_ start: Int,_ end: Int) -> Int {
     let p = nums[end]//参考点。排序：比p小的在左边，比p大的在右边
     var i = start
-    
+
     for j in start..<end {
         if nums[j] < p {
             swap(&nums, i, j)
             i += 1
         }
     }
-    
+
     // 把中间的值换为用于比较的基准值
     swap(&nums, i, end)
     return i
@@ -48,7 +48,7 @@ func quickSort_a(data:[Int])->[Int]{
     if data.count<=1 {
         return data
     }
-    
+
     var left:[Int] = []
     var right:[Int] = []
     let pivot:Int = data[data.count-1]
@@ -59,7 +59,7 @@ func quickSort_a(data:[Int])->[Int]{
             right.append(data[index])
         }
     }
-    
+
     var result = quickSort_a(data: left)
     result.append(pivot)
     let rightResult = quickSort_a(data: right)
@@ -176,7 +176,6 @@ func exchange(_ a: inout [Int], _ i: Int, _ j: Int) {
     a[i] = a[j]
     a[j] = temp
 }
-
 ```
 
 ## 参考
@@ -187,4 +186,5 @@ func exchange(_ a: inout [Int], _ i: Int, _ j: Int) {
 
 ## 练习
 
-- [ ] 手写快排、归并、堆排序
+* [ ] 手写快排、归并、堆排序
+

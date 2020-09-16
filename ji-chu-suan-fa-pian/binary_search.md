@@ -6,24 +6,24 @@
 
 模板四点要素
 
-- 1、初始化：start=0、end=len-1
-- 2、循环退出条件：start + 1 < end
-- 3、比较中点和目标值：A[mid] ==、 <、> target
-- 4、判断最后两个元素是否符合：A[start]、A[end] ? target
+* 1、初始化：start=0、end=len-1
+* 2、循环退出条件：start + 1 &lt; end
+* 3、比较中点和目标值：A\[mid\] ==、 &lt;、&gt; target
+* 4、判断最后两个元素是否符合：A\[start\]、A\[end\] ? target
 
-时间复杂度 O(logn)，使用场景一般是有序数组的查找
+时间复杂度 O\(logn\)，使用场景一般是有序数组的查找
 
 典型示例
 
 [binary-search](https://leetcode-cn.com/problems/binary-search/)
 
-> 给定一个  n  个元素有序的（升序）整型数组  nums 和一个目标值  target  ，写一个函数搜索  nums  中的 target，如果目标值存在返回下标，否则返回 -1。
+> 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
 ```swift
 func search(_ nums: [Int], _ target: Int) -> Int {
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
         let mid = (end + start)/2
         if nums[mid] == target {
@@ -38,24 +38,24 @@ func search(_ nums: [Int], _ target: Int) -> Int {
     if nums[start] == target {
         return start
     }
-    
+
     if nums[end] == target {
         return end
     }
-    
+
     return  -1
 }
 ```
 
 大部分二分查找类的题目都可以用这个模板，然后做一点特殊逻辑即可
 
-另外二分查找还有一些其他模板如下图，大部分场景模板#3 都能解决问题，而且还能找第一次/最后一次出现的位置，应用更加广泛
+另外二分查找还有一些其他模板如下图，大部分场景模板\#3 都能解决问题，而且还能找第一次/最后一次出现的位置，应用更加广泛
 
-![binary_search_template](https://img.fuiboom.com/img/binary_search_template.png)
+![binary\_search\_template](https://img.fuiboom.com/img/binary_search_template.png)
 
-所以用模板#3 就对了，详细的对比可以这边文章介绍：[二分搜索模板](https://leetcode-cn.com/explore/learn/card/binary-search/212/template-analysis/847/)
+所以用模板\#3 就对了，详细的对比可以这边文章介绍：[二分搜索模板](https://leetcode-cn.com/explore/learn/card/binary-search/212/template-analysis/847/)
 
-如果是最简单的二分搜索，不需要找第一个、最后一个位置、或者是没有重复元素，可以使用模板#1，代码更简洁
+如果是最简单的二分搜索，不需要找第一个、最后一个位置、或者是没有重复元素，可以使用模板\#1，代码更简洁
 
 ```swift
 // 无重复元素搜索时，更方便
@@ -66,7 +66,7 @@ func search(_ nums: [Int], _ target: Int) -> Int {
 func search(_ nums: [Int], _ target: Int) -> Int {
     var start = 0
     var end = nums.count - 1
-    
+
     while start <= end {
         let mid = (end + start)/2
         if nums[mid] == target {
@@ -88,8 +88,7 @@ func search(_ nums: [Int], _ target: Int) -> Int {
 
 ### [search-for-range](https://www.lintcode.com/problem/search-for-a-range/description)
 
-> 给定一个包含 n 个整数的排序数组，找出给定目标值 target 的起始和结束位置。
-> 如果目标值不在数组中，则返回`[-1, -1]`
+> 给定一个包含 n 个整数的排序数组，找出给定目标值 target 的起始和结束位置。 如果目标值不在数组中，则返回`[-1, -1]`
 
 思路：核心点就是找第一个 target 的索引，和最后一个 target 的索引，所以用两次二分搜索分别找第一次和最后一次的位置
 
@@ -99,10 +98,10 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
     guard nums.count != 0 else {
         return result
     }
-    
+
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
         let mid = (end + start)/2
         if nums[mid] == target {
@@ -113,7 +112,7 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
             start = mid
         }
     }
-    
+
     // 搜索左边的索引
     if nums[start] == target {
         result[0] = start
@@ -122,10 +121,10 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
     } else {
         return [-1,-1]
     }
-    
+
     start = 0
     end = nums.count - 1
-    
+
     while start + 1 < end {
         let mid = (end + start)/2
         if nums[mid] == target {
@@ -136,7 +135,7 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
             start = mid
         }
     }
-    
+
     // 搜索右边的索引
     if result[end] == target {
         result[1] = end
@@ -145,7 +144,7 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
     } else {
         return [-1,-1]
     }
-    
+
     return result
 }
 ```
@@ -162,7 +161,7 @@ func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
 func searchInsert(_ nums: [Int], _ target: Int) -> Int {
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
         let mid = (end + start)/2
         if nums[mid] == target {
@@ -173,7 +172,7 @@ func searchInsert(_ nums: [Int], _ target: Int) -> Int {
             start = mid
         }
     }
-    
+
     if nums[start] >= target {
         return start
     }else if nums[end] >= target {
@@ -186,10 +185,10 @@ func searchInsert(_ nums: [Int], _ target: Int) -> Int {
 
 ### [search-a-2d-matrix](https://leetcode-cn.com/problems/search-a-2d-matrix/)
 
-> 编写一个高效的算法来判断  m x n  矩阵中，是否存在一个目标值。该矩阵具有如下特性：
+> 编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：
 >
-> - 每行中的整数从左到右按升序排列。
-> - 每行的第一个整数大于前一行的最后一个整数。
+> * 每行中的整数从左到右按升序排列。
+> * 每行的第一个整数大于前一行的最后一个整数。
 
 ```swift
 //https://leetcode-cn.com/problems/search-a-2d-matrix/solution/swift-m-x-nju-zhen-ke-yi-shi-wei-chang-du-wei-m-x-/
@@ -205,10 +204,10 @@ func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
     if n == 0 {
         return false
     }
-    
+
     var start = 0
     var end = m * n - 1
-    
+
     while start <= end {
         let mid = (end + start)/2
         let midValue = matrix[mid/n][mid%n]
@@ -220,15 +219,14 @@ func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
             end = mid - 1
         }
     }
-    
+
     return false
 }
 ```
 
 ### [first-bad-version](https://leetcode-cn.com/problems/first-bad-version/)
 
-> 假设你有 n 个版本 [1, 2, ..., n]，你想找出导致之后所有版本出错的第一个错误的版本。
-> 你可以通过调用  bool isBadVersion(version)  接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。
+> 假设你有 n 个版本 \[1, 2, ..., n\]，你想找出导致之后所有版本出错的第一个错误的版本。 你可以通过调用 bool isBadVersion\(version\) 接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。
 
 ```swift
 //https://leetcode-cn.com/problems/first-bad-version/solution/swift-er-fen-cha-zhao-by-hu-cheng-he-da-bai-sha-3/
@@ -255,8 +253,7 @@ func firstBadVersion(n int) int {
 
 ### [find-minimum-in-rotated-sorted-array](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
 
-> 假设按照升序排序的数组在预先未知的某个点上进行了旋转( 例如，数组  [0,1,2,4,5,6,7] 可能变为  [4,5,6,7,0,1,2] )。
-> 请找出其中最小的元素。
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转\( 例如，数组 \[0,1,2,4,5,6,7\] 可能变为 \[4,5,6,7,0,1,2\] \)。 请找出其中最小的元素。
 
 ```swift
 //https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/solution/swift-er-fen-cha-zhao-by-hu-cheng-he-da-bai-sha-4/
@@ -265,7 +262,7 @@ func firstBadVersion(n int) int {
 func findMin(_ nums: [Int]) -> Int {
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
         let mid = (start + end)/2
         //        if nums[mid] > nums[start] && nums[mid] > nums[end] {
@@ -287,9 +284,7 @@ func findMin(_ nums: [Int]) -> Int {
 
 ### [find-minimum-in-rotated-sorted-array-ii](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
 
-> 假设按照升序排序的数组在预先未知的某个点上进行了旋转
-> ( 例如，数组  [0,1,2,4,5,6,7] 可能变为  [4,5,6,7,0,1,2] )。
-> 请找出其中最小的元素。(包含重复元素)
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转 \( 例如，数组 \[0,1,2,4,5,6,7\] 可能变为 \[4,5,6,7,0,1,2\] \)。 请找出其中最小的元素。\(包含重复元素\)
 
 ```swift
 //https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/solution/swift-er-fen-cha-zhao-gen-ju-153ti-bi-jiao-qian-qu/
@@ -299,9 +294,9 @@ func findMin(_ nums: [Int]) -> Int {
 func findMin(_ nums: [Int]) -> Int {
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
-        
+
         while start + 1 < end {
             if nums[start] == nums[start + 1] {
                 start += 1
@@ -316,7 +311,7 @@ func findMin(_ nums: [Int]) -> Int {
                 break
             }
         }
-        
+
         let mid = (start + end)/2
         if nums[mid] > nums[end] {
             start = mid
@@ -330,10 +325,7 @@ func findMin(_ nums: [Int]) -> Int {
 
 ### [search-in-rotated-sorted-array](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 
-> 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
-> ( 例如，数组  [0,1,2,4,5,6,7]  可能变为  [4,5,6,7,0,1,2] )。
-> 搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回  -1 。
-> 你可以假设数组中不存在重复的元素。
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转。 \( 例如，数组 \[0,1,2,4,5,6,7\] 可能变为 \[4,5,6,7,0,1,2\] \)。 搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。 你可以假设数组中不存在重复的元素。
 
 ```swift
 //https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/swift-er-fen-cha-zhao-que-ren-midhe-targetde-wei-z/
@@ -345,10 +337,10 @@ func search(_ nums: [Int], _ target: Int) -> Int {
     } else  if nums.count == 1 {
         return nums[0] == target ? 0 : -1
     }
-    
+
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
         let mid = (start + end)/2
         if target == nums[mid] {
@@ -383,9 +375,7 @@ func search(_ nums: [Int], _ target: Int) -> Int {
 
 ### [search-in-rotated-sorted-array-ii](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
 
-> 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
-> ( 例如，数组  [0,0,1,2,2,5,6]  可能变为  [2,5,6,0,0,1,2] )。
-> 编写一个函数来判断给定的目标值是否存在于数组中。若存在返回  true，否则返回  false。(包含重复元素)
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转。 \( 例如，数组 \[0,0,1,2,2,5,6\] 可能变为 \[2,5,6,0,0,1,2\] \)。 编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。\(包含重复元素\)
 
 ```swift
 //https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/solution/swift-zai-33ti-ji-chu-shang-bi-jiao-qian-xian-qu-c/
@@ -398,10 +388,10 @@ func search_3(_ nums: [Int], _ target: Int) -> Bool {
     } else  if nums.count == 1 {
         return nums[0] == target
     }
-    
+
     var start = 0
     var end = nums.count - 1
-    
+
     while start + 1 < end {
         while start + 1 < end {
             if nums[start] == nums[start + 1] {
@@ -417,8 +407,8 @@ func search_3(_ nums: [Int], _ target: Int) -> Bool {
                 break
             }
         }
-        
-        
+
+
         let mid = (start + end)/2
         if target == nums[mid] {
             return true
@@ -445,18 +435,19 @@ func search_3(_ nums: [Int], _ target: Int) -> Bool {
 
 二分搜索核心四点要素（必背&理解）
 
-- 1、初始化：start=0、end=len-1
-- 2、循环退出条件：start + 1 < end
-- 3、比较中点和目标值：A[mid] ==、 <、> target
-- 4、判断最后两个元素是否符合：A[start]、A[end] ? target
+* 1、初始化：start=0、end=len-1
+* 2、循环退出条件：start + 1 &lt; end
+* 3、比较中点和目标值：A\[mid\] ==、 &lt;、&gt; target
+* 4、判断最后两个元素是否符合：A\[start\]、A\[end\] ? target
 
 ## 练习题
 
-- [ ] [search-for-range](https://www.lintcode.com/problem/search-for-a-range/description)
-- [ ] [search-insert-position](https://leetcode-cn.com/problems/search-insert-position/)
-- [ ] [search-a-2d-matrix](https://leetcode-cn.com/problems/search-a-2d-matrix/)
-- [ ] [first-bad-version](https://leetcode-cn.com/problems/first-bad-version/)
-- [ ] [find-minimum-in-rotated-sorted-array](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
-- [ ] [find-minimum-in-rotated-sorted-array-ii](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
-- [ ] [search-in-rotated-sorted-array](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
-- [ ] [search-in-rotated-sorted-array-ii](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+* [ ] [search-for-range](https://www.lintcode.com/problem/search-for-a-range/description)
+* [ ] [search-insert-position](https://leetcode-cn.com/problems/search-insert-position/)
+* [ ] [search-a-2d-matrix](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+* [ ] [first-bad-version](https://leetcode-cn.com/problems/first-bad-version/)
+* [ ] [find-minimum-in-rotated-sorted-array](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
+* [ ] [find-minimum-in-rotated-sorted-array-ii](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+* [ ] [search-in-rotated-sorted-array](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+* [ ] [search-in-rotated-sorted-array-ii](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+

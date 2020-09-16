@@ -20,11 +20,11 @@ a=a^b
 
 ### 移除最后一个 1
 
-a=n&(n-1)
+a=n&\(n-1\)
 
 ### 获取最后一个 1
 
-diff=(n&(n-1))^n
+diff=\(n&\(n-1\)\)^n
 
 ## 常见题目
 
@@ -61,7 +61,6 @@ func singleNumber(_ nums: [Int]) -> Int {
 >
 > 3）某数第三次出现，本来要存于once，结果twice中存在，所以，清零
 
-
 ```swift
 //https://leetcode-cn.com/problems/single-number-ii/solution/swift-wei-yun-suan-by-hu-cheng-he-da-bai-sha-2/
 //思路：https://leetcode-cn.com/problems/single-number-ii/solution/single-number-ii-mo-ni-san-jin-zhi-fa-by-jin407891/
@@ -79,7 +78,7 @@ func singleNumber_1(_ nums: [Int]) -> Int {
 
 [single-number-iii](https://leetcode-cn.com/problems/single-number-iii/)
 
-> 给定一个整数数组  `nums`，其中恰好有两个元素只出现一次，其余所有元素均出现两次。 找出只出现一次的那两个元素。
+> 给定一个整数数组 `nums`，其中恰好有两个元素只出现一次，其余所有元素均出现两次。 找出只出现一次的那两个元素。
 
 ```swift
 //https://leetcode-cn.com/problems/single-number-iii/solution/swift-fen-liang-zu-lai-jiang-wei-dao-qiu-chu-xian-/
@@ -111,7 +110,7 @@ func singleNumber(_ nums: [Int]) -> [Int] {
 
 [number-of-1-bits](https://leetcode-cn.com/problems/number-of-1-bits/)
 
-> 编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’  的个数（也被称为[汉明重量](https://baike.baidu.com/item/%E6%B1%89%E6%98%8E%E9%87%8D%E9%87%8F)）。
+> 编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为[汉明重量](https://baike.baidu.com/item/%E6%B1%89%E6%98%8E%E9%87%8D%E9%87%8F)）。
 
 在二进制表示中，数字 n 中最低位的 1总是对应 n - 1中的 0 。因此，将 n 和 n - 1与运算总是能把 n中最低位的 1 变成 0 ，并保持其他位不变。
 
@@ -132,7 +131,7 @@ func hammingWeight(_ n: Int) -> Int {
 
 [counting-bits](https://leetcode-cn.com/problems/counting-bits/)
 
-> 给定一个非负整数  **num**。对于  0 ≤ i ≤ num  范围中的每个数字  i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
+> 给定一个非负整数 **num**。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
 
 ```swift
 //https://leetcode-cn.com/problems/counting-bits/solution/swift-bian-li-mei-ge-shu-an-191-wei-1de-ge-shu-qiu/
@@ -199,7 +198,7 @@ func reverseBits(_ n: Int) -> Int {
     while num != 0 {
         let bit = num&1
         res += bit << pow
-        
+
         num = num >> 1
         pow -= 1
     }
@@ -209,7 +208,7 @@ func reverseBits(_ n: Int) -> Int {
 
 [bitwise-and-of-numbers-range](https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/)
 
-> 给定范围 [m, n]，其中 0 <= m <= n <= 2147483647，返回此范围内所有数字的按位与（包含 m, n 两端点）。
+> 给定范围 \[m, n\]，其中 0 &lt;= m &lt;= n &lt;= 2147483647，返回此范围内所有数字的按位与（包含 m, n 两端点）。
 
 ```swift
 //https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/solution/swift-zui-zhong-jie-guo-you-zuo-bian-gong-gong-zhi/
@@ -236,11 +235,11 @@ func rangeBitwiseAnd(_ m: Int, _ n: Int) -> Int {
 
 ## 练习
 
-- [ ] [single-number](https://leetcode-cn.com/problems/single-number/)
-- [ ] [single-number-ii](https://leetcode-cn.com/problems/single-number-ii/)
-- [ ] [single-number-iii](https://leetcode-cn.com/problems/single-number-iii/)
-- [ ] [number-of-1-bits](https://leetcode-cn.com/problems/number-of-1-bits/)
-- [ ] [counting-bits](https://leetcode-cn.com/problems/counting-bits/)
-- [ ] [reverse-bits](https://leetcode-cn.com/problems/reverse-bits/)
-- [ ] [bitwise-and-of-numbers-range](https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/)
+* [ ] [single-number](https://leetcode-cn.com/problems/single-number/)
+* [ ] [single-number-ii](https://leetcode-cn.com/problems/single-number-ii/)
+* [ ] [single-number-iii](https://leetcode-cn.com/problems/single-number-iii/)
+* [ ] [number-of-1-bits](https://leetcode-cn.com/problems/number-of-1-bits/)
+* [ ] [counting-bits](https://leetcode-cn.com/problems/counting-bits/)
+* [ ] [reverse-bits](https://leetcode-cn.com/problems/reverse-bits/)
+* [ ] [bitwise-and-of-numbers-range](https://leetcode-cn.com/problems/bitwise-and-of-numbers-range/)
 
