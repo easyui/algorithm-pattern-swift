@@ -1,4 +1,4 @@
-# 递归
+# 递归思维
 
 ## 介绍
 
@@ -8,7 +8,7 @@
 
 [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
 
-> 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组  `char[]`  的形式给出。
+> 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 `char[]` 的形式给出。
 
 ```swift
 //系统api
@@ -28,15 +28,14 @@ func reverseString_a(_ s: inout [Character]) {
         (s[left],s[right]) = (s[right],s[left])
         helper(&s, left + 1, right - 1)
     }
-    
+
     helper(&s, 0, s.count-1)
 }
 ```
 
 [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
-> 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
-> **你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
+> 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。 **你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
 
 ```swift
 public class ListNode {
@@ -54,7 +53,7 @@ func swapPairs(_ head: ListNode?) -> ListNode? {
     guard let item = head, let next = item.next  else {
         return head
     }
-    
+
     let nextNext = next.next
     next.next = item
     let new = swapPairs(nextNext)
@@ -65,7 +64,7 @@ func swapPairs(_ head: ListNode?) -> ListNode? {
 
 [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 
-> 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。
+> 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。
 
 ```swift
 public class TreeNode {
@@ -89,7 +88,7 @@ func generateTrees(_ n: Int) -> [TreeNode?] {
     guard n <= 0 else {
         return []
     }
-    
+
     func helper(_ start: Int, _ end: Int) -> [TreeNode?]{
         if start > end {
             return [nil]
@@ -98,7 +97,7 @@ func generateTrees(_ n: Int) -> [TreeNode?] {
         for rootVal in start...end {
             let leftTrees = helper(start,rootVal - 1)
             let rightTrees = helper(rootVal + 1,end)
-            
+
             for leftItem in leftTrees {
                 for rightItem  in rightTrees {
                     let root = TreeNode(rootVal)
@@ -110,7 +109,7 @@ func generateTrees(_ n: Int) -> [TreeNode?] {
         }
         return trees
     }
-    
+
     return helper(1, n)
 }
 
@@ -121,10 +120,7 @@ func generateTrees(_ n: Int) -> [TreeNode?] {
 
 [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
 
-> 斐波那契数，通常用  F(n) 表示，形成的序列称为斐波那契数列。该数列由  0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：
-> F(0) = 0,   F(1) = 1
-> F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
-> 给定  N，计算  F(N)。
+> 斐波那契数，通常用 F\(n\) 表示，形成的序列称为斐波那契数列。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是： F\(0\) = 0, F\(1\) = 1 F\(N\) = F\(N - 1\) + F\(N - 2\), 其中 N &gt; 1. 给定 N，计算 F\(N\)。
 
 ```swift
 //https://leetcode-cn.com/problems/fibonacci-number/solution/swift-di-gui-huan-cun-by-hu-cheng-he-da-bai-sha/
@@ -144,7 +140,7 @@ func fib(_ N: Int) -> Int {
          cache[n] = res
          return res
     }
- 
+
     return helper(N)
 }
 //fib(100)
@@ -152,7 +148,8 @@ func fib(_ N: Int) -> Int {
 
 ## 练习
 
-- [ ] [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
-- [ ] [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
-- [ ] [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
-- [ ] [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
+* [ ] [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
+* [ ] [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+* [ ] [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
+* [ ] [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
+

@@ -4,7 +4,7 @@
 
 先从一道题目开始~
 
-如题  [triangle](https://leetcode-cn.com/problems/triangle/)
+如题 [triangle](https://leetcode-cn.com/problems/triangle/)
 
 > 给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
 
@@ -19,7 +19,7 @@
 ]
 ```
 
-自顶向下的最小路径和为  11（即，2 + 3 + 5 + 1 = 11）。
+自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
 
 使用 DFS（遍历 或者 分治法）
 
@@ -61,8 +61,8 @@ func minimumTotal(_ triangle: [[Int]]) -> Int {
 
 动态规划和 DFS 区别
 
-- 二叉树 子问题是没有交集，所以大部分二叉树都用递归或者分治法，即 DFS，就可以解决
-- 像 triangle 这种是有重复走的情况，**子问题是有交集**，所以可以用动态规划来解决
+* 二叉树 子问题是没有交集，所以大部分二叉树都用递归或者分治法，即 DFS，就可以解决
+* 像 triangle 这种是有重复走的情况，**子问题是有交集**，所以可以用动态规划来解决
 
 动态规划，自底向上
 
@@ -142,59 +142,55 @@ func minimumTotal(_ triangle: [[Int]]) -> Int {
 
 ```swift
 Function(x) {
-	...
-	Funciton(x-1);
-	...
+    ...
+    Funciton(x-1);
+    ...
 }
 ```
 
-动态规划：是一种解决问 题的思想，大规模问题的结果，是由小规模问 题的结果运算得来的。动态规划可用递归来实现(Memorization Search)
+动态规划：是一种解决问 题的思想，大规模问题的结果，是由小规模问 题的结果运算得来的。动态规划可用递归来实现\(Memorization Search\)
 
 ## 使用场景
 
 满足两个条件
 
-- 满足以下条件之一
-  - 求最大/最小值（Maximum/Minimum ）
-  - 求是否可行（Yes/No ）
-  - 求可行个数（Count(\*) ）
-- 满足不能排序或者交换（Can not sort / swap ）
+* 满足以下条件之一
+  * 求最大/最小值（Maximum/Minimum ）
+  * 求是否可行（Yes/No ）
+  * 求可行个数（Count\(\*\) ）
+* 满足不能排序或者交换（Can not sort / swap ）
 
-如题：[longest-consecutive-sequence](https://leetcode-cn.com/problems/longest-consecutive-sequence/)  位置可以交换，所以不用动态规划
+如题：[longest-consecutive-sequence](https://leetcode-cn.com/problems/longest-consecutive-sequence/) 位置可以交换，所以不用动态规划
 
 ## 四点要素
 
 1. **状态 State**
-   - 灵感，创造力，存储小规模问题的结果
+   * 灵感，创造力，存储小规模问题的结果
 2. 方程 Function
-   - 状态之间的联系，怎么通过小的状态，来算大的状态
+   * 状态之间的联系，怎么通过小的状态，来算大的状态
 3. 初始化 Intialization
-   - 最极限的小状态是什么, 起点
+   * 最极限的小状态是什么, 起点
 4. 答案 Answer
-   - 最大的那个状态是什么，终点
+   * 最大的那个状态是什么，终点
 
 ## 常见四种类型
 
-1. Matrix DP (10%)
-1. Sequence (40%)
-1. Two Sequences DP (40%)
-1. Backpack (10%)
+1. Matrix DP \(10%\)
+2. Sequence \(40%\)
+3. Two Sequences DP \(40%\)
+4. Backpack \(10%\)
 
 > 注意点
 >
-> - 贪心算法大多题目靠背答案，所以如果能用动态规划就尽量用动规，不用贪心算法
+> * 贪心算法大多题目靠背答案，所以如果能用动态规划就尽量用动规，不用贪心算法
 
 ## 1、矩阵类型（10%）
 
 ### [minimum-path-sum](https://leetcode-cn.com/problems/minimum-path-sum/)
 
-> 给定一个包含非负整数的  *m* x *n*  网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+> 给定一个包含非负整数的 _m_ x _n_ 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
 
-思路：动态规划
-1、state: f[x][y]从起点走到 x,y 的最短路径
-2、function: f[x][y] = min(f[x-1][y], f[x][y-1]) + A[x][y]
-3、intialize: f[0][0] = A[0][0]、f[i][0] = sum(0,0 -> i,0)、 f[0][i] = sum(0,0 -> 0,i)
-4、answer: f[n-1][m-1]
+思路：动态规划 1、state: f\[x\]\[y\]从起点走到 x,y 的最短路径 2、function: f\[x\]\[y\] = min\(f\[x-1\]\[y\], f\[x\]\[y-1\]\) + A\[x\]\[y\] 3、intialize: f\[0\]\[0\] = A\[0\]\[0\]、f\[i\]\[0\] = sum\(0,0 -&gt; i,0\)、 f\[0\]\[i\] = sum\(0,0 -&gt; 0,i\) 4、answer: f\[n-1\]\[m-1\]
 
 ```swift
 //https://leetcode-cn.com/problems/minimum-path-sum/solution/swift-dong-tai-gui-hua-zi-di-xiang-shang-kong-ji-2/
@@ -223,13 +219,13 @@ func minPathSum(_ grid: [[Int]]) -> Int {
         return 0
     }
     let n = grid[0].count
-    
+
     var dp =  grid[m-1]
     for i in (0..<(n-1)).reversed() {
         dp[i] += dp[i+1]
     }
     dp.append(Int.max)//dp长度是n+1
-    
+
     for i in (0..<(m-1)).reversed()  {
         for j in (0..<n).reversed()  {
             dp[j] = min(dp[j],dp[j+1]) + grid[i][j]
@@ -248,7 +244,7 @@ func minPathSum_a(_ grid: [[Int]]) -> Int {
         return 0
     }
     let n = grid[0].count
-    
+
     var cache =  Dictionary<String, Int>()
     func dfs(_ i: Int, _ j: Int) -> Int {
         if i == m || j == n {
@@ -271,9 +267,7 @@ func minPathSum_a(_ grid: [[Int]]) -> Int {
 
 ### [unique-paths](https://leetcode-cn.com/problems/unique-paths/)
 
-> 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
-> 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
-> 问总共有多少条不同的路径？
+> 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。 问总共有多少条不同的路径？
 
 ```swift
 //https://leetcode-cn.com/problems/unique-paths/solution/swift-dong-tai-gui-hua-zi-di-xiang-shang-kong-ji-3/
@@ -299,7 +293,7 @@ func uniquePaths(_ m: Int, _ n: Int) -> Int {
         }
     }
     return dp[0]
-    
+
 }
 //print(uniquePaths(7,3))
 
@@ -327,10 +321,7 @@ func uniquePaths_a(_ m: Int, _ n: Int) -> Int {
 
 ### [unique-paths-ii](https://leetcode-cn.com/problems/unique-paths-ii/)
 
-> 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
-> 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
-> 问总共有多少条不同的路径？
-> 现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
+> 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。 问总共有多少条不同的路径？ 现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
 
 ```swift
 //https://leetcode-cn.com/problems/unique-paths-ii/solution/swift-dong-tai-gui-hua-zi-di-xiang-shang-kong-ji-4/
@@ -383,7 +374,7 @@ func uniquePathsWithObstacles_a(_ obstacleGrid: [[Int]]) -> Int {
         return 0
     }
     let n = obstacleGrid[0].count
-    
+
     var cache =  Dictionary<String, Int>()
     func dfs(_ i: Int, _ j: Int) -> Int {
         if i > m - 1 || j > n - 1 || obstacleGrid[i][j] == 1{
@@ -407,7 +398,7 @@ func uniquePathsWithObstacles_a(_ obstacleGrid: [[Int]]) -> Int {
 
 ### [climbing-stairs](https://leetcode-cn.com/problems/climbing-stairs/)
 
-> 假设你正在爬楼梯。需要  *n*  阶你才能到达楼顶。
+> 假设你正在爬楼梯。需要 _n_ 阶你才能到达楼顶。
 
 ```swift
 //https://leetcode-cn.com/problems/climbing-stairs/solution/swift-dong-tai-gui-hua-fxfx-1fx-2-by-hu-cheng-he-d/
@@ -449,9 +440,7 @@ func climbStairs_a(_ n: Int) -> Int {//n是正整数
 
 ### [jump-game](https://leetcode-cn.com/problems/jump-game/)
 
-> 给定一个非负整数数组，你最初位于数组的第一个位置。
-> 数组中的每个元素代表你在该位置可以跳跃的最大长度。
-> 判断你是否能够到达最后一个位置。
+> 给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。 判断你是否能够到达最后一个位置。
 
 ```swift
 //https://leetcode-cn.com/problems/jump-game/solution/swift-dong-tai-gui-hua-cong-qian-wang-hou-by-hu-ch/
@@ -491,9 +480,7 @@ func canJump_a(_ nums: [Int]) -> Bool {
 
 ### [jump-game-ii](https://leetcode-cn.com/problems/jump-game-ii/)
 
-> 给定一个非负整数数组，你最初位于数组的第一个位置。
-> 数组中的每个元素代表你在该位置可以跳跃的最大长度。
-> 你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+> 给定一个非负整数数组，你最初位于数组的第一个位置。 数组中的每个元素代表你在该位置可以跳跃的最大长度。 你的目标是使用最少的跳跃次数到达数组的最后一个位置。
 
 ```swift
 //https://leetcode-cn.com/problems/jump-game-ii/solution/swift-zheng-xiang-dong-tai-cha-zhao-by-hu-cheng-he/
@@ -525,8 +512,7 @@ func jump(_ nums: [Int]) -> Int {
 
 ### [palindrome-partitioning-ii](https://leetcode-cn.com/problems/palindrome-partitioning-ii/)
 
-> 给定一个字符串 _s_，将 _s_ 分割成一些子串，使每个子串都是回文串。
-> 返回符合要求的最少分割次数。
+> 给定一个字符串 _s_，将 _s_ 分割成一些子串，使每个子串都是回文串。 返回符合要求的最少分割次数。
 
 ```swift
 //https://leetcode-cn.com/problems/palindrome-partitioning-ii/solution/swift-dong-tai-gui-hua-ti-qian-huan-cun-hui-wen-ch/
@@ -535,15 +521,15 @@ func jump(_ nums: [Int]) -> Int {
 //内存消耗：21.6 MB, 在所有 Swift 提交中击败了50.00%的用户
 func minCut(_ s: String) -> Int {
     let count = s.count
-    
+
     if count <= 1{
         return 0
     }
-    
+
     var dp = Array(0..<count)
-    
+
     let sArray = Array(s)
-    
+
     var checkPalindrome = Array(repeating: Array(repeating: false, count: count), count: count)
     for right in 0..<count {
         for left in 0...right {
@@ -552,7 +538,7 @@ func minCut(_ s: String) -> Int {
             }
         }
     }
-    
+
     for right in 0..<count {
         if checkPalindrome[0][right] {
             dp[right] = 0
@@ -570,7 +556,7 @@ func minCut(_ s: String) -> Int {
 
 注意点
 
-- 判断回文字符串时，可以提前用动态规划算好，减少时间复杂度
+* 判断回文字符串时，可以提前用动态规划算好，减少时间复杂度
 
 ### [longest-increasing-subsequence](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
 
@@ -601,7 +587,7 @@ func lengthOfLIS(_ nums: [Int]) -> Int {
 
 ### [word-break](https://leetcode-cn.com/problems/word-break/)
 
-> 给定一个**非空**字符串  *s*  和一个包含**非空**单词列表的字典  *wordDict*，判定  *s*  是否可以被空格拆分为一个或多个在字典中出现的单词。
+> 给定一个**非空**字符串 _s_ 和一个包含**非空**单词列表的字典 _wordDict_，判定 _s_ 是否可以被空格拆分为一个或多个在字典中出现的单词。
 
 ```swift
 //https://leetcode-cn.com/problems/word-break/solution/swift-dong-tai-gui-hua-you-hua-bian-li-chang-du-by/
@@ -616,12 +602,12 @@ func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
         maxCount = max(item.count ,maxCount)
         minCount = min(item.count ,minCount)
     }
-    
-    
+
+
     let dpCount = s.count + 1
     var dp = Array(repeating: false, count: dpCount)
     dp[0] = true
-    
+
     for i in 1..<dpCount {
         let left = max( i - maxCount ,0)
         let right = (i - minCount)
@@ -645,7 +631,7 @@ func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
             }
         }
     }
-    
+
     return dp[dpCount-1]
 }
 //print(wordBreak("applepenapple",["apple","pen"]))
@@ -673,7 +659,7 @@ func wordBreak_a(_ s: String, _ wordDict: [String]) -> Bool {
         }
         cache[str] = flag
         return flag
-        
+
     }
     return check(s)
 }
@@ -683,20 +669,18 @@ func wordBreak_a(_ s: String, _ wordDict: [String]) -> Bool {
 
 小结
 
-常见处理方式是给 0 位置占位，这样处理问题时一视同仁，初始化则在原来基础上 length+1，返回结果 f[n]
+常见处理方式是给 0 位置占位，这样处理问题时一视同仁，初始化则在原来基础上 length+1，返回结果 f\[n\]
 
-- 状态可以为前 i 个
-- 初始化 length+1
-- 取值 index=i-1
-- 返回值：f[n]或者 f[m][n]
+* 状态可以为前 i 个
+* 初始化 length+1
+* 取值 index=i-1
+* 返回值：f\[n\]或者 f\[m\]\[n\]
 
 ## Two Sequences DP（40%）
 
 ### [longest-common-subsequence](https://leetcode-cn.com/problems/longest-common-subsequence/)
 
-> 给定两个字符串  text1 和  text2，返回这两个字符串的最长公共子序列。
-> 一个字符串的   子序列   是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。
-> 例如，"ace" 是 "abcde" 的子序列，但 "aec" 不是 "abcde" 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。
+> 给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列。 一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。 例如，"ace" 是 "abcde" 的子序列，但 "aec" 不是 "abcde" 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。
 
 ```swift
 //https://leetcode-cn.com/problems/longest-common-subsequence/solution/swift-dong-tai-gui-hua-biao-by-hu-cheng-he-da-bai-/
@@ -705,9 +689,9 @@ func wordBreak_a(_ s: String, _ wordDict: [String]) -> Bool {
 func longestCommonSubsequence(_ text1: String, _ text2: String) -> Int {
     let array1 = Array(text1)
     let array2 = Array(text2)
-    
+
     var dp = Array(repeating: Array(repeating: 0, count: array2.count + 1), count: array1.count + 1)
-    
+
     for i in 1...array1.count {
         for j in 1...array2.count {
             if array1[i - 1] == array2[j - 1]{
@@ -717,21 +701,17 @@ func longestCommonSubsequence(_ text1: String, _ text2: String) -> Int {
             }
         }
     }
-    
+
     return dp[array1.count][array2.count]
 }
 
 //print(longestCommonSubsequence("abc","def"))
-
 ```
 
 ### [edit-distance](https://leetcode-cn.com/problems/edit-distance/)
 
-> 给你两个单词  word1 和  word2，请你计算出将  word1  转换成  word2 所使用的最少操作数  
-> 你可以对一个单词进行如下三种操作：
-> 插入一个字符
-> 删除一个字符
-> 替换一个字符
+> 给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数  
+> 你可以对一个单词进行如下三种操作： 插入一个字符 删除一个字符 替换一个字符
 
 思路：和上题很类似，相等则不需要操作，否则取删除、插入、替换最小操作次数的值+1
 
@@ -742,11 +722,11 @@ func longestCommonSubsequence(_ text1: String, _ text2: String) -> Int {
 func minDistance(_ word1: String, _ word2: String) -> Int {
     let array1 = Array(word1)
     let array2 = Array(word2)
-    
+
     if array1.count == 0 || array2.count == 0 {
         return array1.count + array2.count
     }
-    
+
     var dp = Array(repeating: Array(repeating: 0, count: array2.count + 1), count: array1.count + 1)
     for row in 0...array1.count {
         dp[row][0] = row
@@ -754,7 +734,7 @@ func minDistance(_ word1: String, _ word2: String) -> Int {
     for column in 0...array2.count {
         dp[0][column] = column
     }
-    
+
     for i in 1...array1.count {
         for j in 1...array2.count {
             if array1[i - 1] == array2[j - 1]{
@@ -764,17 +744,16 @@ func minDistance(_ word1: String, _ word2: String) -> Int {
             }
         }
     }
-    
+
     return dp[array1.count][array2.count]
 }
 ```
-
 
 ## 零钱和背包（10%）
 
 ### [coin-change](https://leetcode-cn.com/problems/coin-change/)
 
-> 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回  -1。
+> 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
 
 思路：和其他 DP 不太一样，i 表示钱或者容量
 
@@ -786,10 +765,10 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
     if(amount == 0){
         return 0
     }
-    
+
     var dp = Array(repeating: amount + 1, count: amount + 1)
     dp[0] = 0
-    
+
     for money in 1...amount {
         for coin in coins {
             if money - coin >= 0 {
@@ -797,7 +776,7 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
             }
         }
     }
-    
+
     return  (dp[amount] == amount + 1) ? -1 : dp[amount]
 }
 //print(coinChange([2],3))
@@ -805,11 +784,11 @@ func coinChange(_ coins: [Int], _ amount: Int) -> Int {
 
 注意
 
-> dp[i-a[j]] 决策 a[j]是否参与
+> dp\[i-a\[j\]\] 决策 a\[j\]是否参与
 
 ### [backpack](https://www.lintcode.com/problem/backpack/description)
 
-> 在 n 个物品中挑选若干物品装入背包，最多能装多满？假设背包的大小为 m，每个物品的大小为 A[i]
+> 在 n 个物品中挑选若干物品装入背包，最多能装多满？假设背包的大小为 m，每个物品的大小为 A\[i\]
 
 ```swift
 func backPack (_ A: [Int], _ m: Int)-> Int {
@@ -820,17 +799,17 @@ func backPack (_ A: [Int], _ m: Int)-> Int {
     // f[n][X]
     var f = Array(repeating: Array(repeating: false, count: m + 1), count: A.count + 1)
     f[0][0]=true
-    
+
     for i in 1...A.count {
         for j in 0...m {
             f[i][j]=f[i-1][j]
             if j - A[i-1] >= 0 && f[i-1][j - A[i-1]] {
                 f[i][j]=true
             }
-            
+
         }
     }
-    
+
     for i in (0...m).reversed() {
         if f[A.count][i] {
             return i
@@ -844,10 +823,9 @@ func backPack (_ A: [Int], _ m: Int)-> Int {
 
 ### [backpack-ii](https://www.lintcode.com/problem/backpack-ii/description)
 
-> 有 `n` 个物品和一个大小为 `m` 的背包. 给定数组 `A` 表示每个物品的大小和数组 `V` 表示每个物品的价值.
-> 问最多能装入背包的总价值是多大?
+> 有 `n` 个物品和一个大小为 `m` 的背包. 给定数组 `A` 表示每个物品的大小和数组 `V` 表示每个物品的价值. 问最多能装入背包的总价值是多大?
 
-思路：f[i][j] 前 i 个物品，装入 j 背包 最大价值
+思路：f\[i\]\[j\] 前 i 个物品，装入 j 背包 最大价值
 
 ```swift
 func backPackII (_ m: Int,_ A: [Int],_ V: [Int])-> Int {
@@ -863,10 +841,10 @@ func backPackII (_ m: Int,_ A: [Int],_ V: [Int])-> Int {
             if j - A[i-1] >= 0  {
                 f[i][j] = max(f[i-1][j], f[i-1][j - A[i-1]]+V[i-1])
             }
-            
+
         }
     }
-    
+
     return f[A.count][m]
 }
 
@@ -876,29 +854,30 @@ print(backPackII(10,[2, 3, 8],[2, 5, 8]))
 
 ## 练习
 
-Matrix DP (10%)
+Matrix DP \(10%\)
 
-- [ ] [triangle](https://leetcode-cn.com/problems/triangle/)
-- [ ] [minimum-path-sum](https://leetcode-cn.com/problems/minimum-path-sum/)
-- [ ] [unique-paths](https://leetcode-cn.com/problems/unique-paths/)
-- [ ] [unique-paths-ii](https://leetcode-cn.com/problems/unique-paths-ii/)
+* [ ] [triangle](https://leetcode-cn.com/problems/triangle/)
+* [ ] [minimum-path-sum](https://leetcode-cn.com/problems/minimum-path-sum/)
+* [ ] [unique-paths](https://leetcode-cn.com/problems/unique-paths/)
+* [ ] [unique-paths-ii](https://leetcode-cn.com/problems/unique-paths-ii/)
 
-Sequence (40%)
+Sequence \(40%\)
 
-- [ ] [climbing-stairs](https://leetcode-cn.com/problems/climbing-stairs/)
-- [ ] [jump-game](https://leetcode-cn.com/problems/jump-game/)
-- [ ] [jump-game-ii](https://leetcode-cn.com/problems/jump-game-ii/)
-- [ ] [palindrome-partitioning-ii](https://leetcode-cn.com/problems/palindrome-partitioning-ii/)
-- [ ] [longest-increasing-subsequence](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
-- [ ] [word-break](https://leetcode-cn.com/problems/word-break/)
+* [ ] [climbing-stairs](https://leetcode-cn.com/problems/climbing-stairs/)
+* [ ] [jump-game](https://leetcode-cn.com/problems/jump-game/)
+* [ ] [jump-game-ii](https://leetcode-cn.com/problems/jump-game-ii/)
+* [ ] [palindrome-partitioning-ii](https://leetcode-cn.com/problems/palindrome-partitioning-ii/)
+* [ ] [longest-increasing-subsequence](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+* [ ] [word-break](https://leetcode-cn.com/problems/word-break/)
 
-Two Sequences DP (40%)
+Two Sequences DP \(40%\)
 
-- [ ] [longest-common-subsequence](https://leetcode-cn.com/problems/longest-common-subsequence/)
-- [ ] [edit-distance](https://leetcode-cn.com/problems/edit-distance/)
+* [ ] [longest-common-subsequence](https://leetcode-cn.com/problems/longest-common-subsequence/)
+* [ ] [edit-distance](https://leetcode-cn.com/problems/edit-distance/)
 
-Backpack & Coin Change (10%)
+Backpack & Coin Change \(10%\)
 
-- [ ] [coin-change](https://leetcode-cn.com/problems/coin-change/)
-- [ ] [backpack](https://www.lintcode.com/problem/backpack/description)
-- [ ] [backpack-ii](https://www.lintcode.com/problem/backpack-ii/description)
+* [ ] [coin-change](https://leetcode-cn.com/problems/coin-change/)
+* [ ] [backpack](https://www.lintcode.com/problem/backpack/description)
+* [ ] [backpack-ii](https://www.lintcode.com/problem/backpack-ii/description)
+
